@@ -27,10 +27,10 @@
    "variables": {
         "imagePublisher": "Canonical",
         "imageOffer": "UbuntuServer",
-        "imageVersion": "15.04",
+        "imageVersion": "14.04.2-LTS",
         "addressPrefix": "10.0.0.0/16",
         "subnetName": "subnet",
-        "subnetPrefix": "10.0.0.0/24",
+        "subnetPrefix": "10.0.0.0/21",
         "storageAccountType": "Standard_LRS",
         "location": "[resourceGroup().location]"
    },
@@ -41,7 +41,7 @@
         "apiVersion": "2015-05-01-preview",
         "copy": {
           "name": "storageLoop",
-          "count": 3
+          "count": 5
         },
         "location": "[variables('location')]",
         "properties": {
@@ -59,10 +59,12 @@
        "dependsOn": [
            "[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountPrefix'), '0')]",
            "[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountPrefix'), '1')]",
-           "[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountPrefix'), '2')]"
+           "[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountPrefix'), '2')]",
+           "[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountPrefix'), '3')]",
+           "[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountPrefix'), '4')]"
        ],
        "sku": {
-         "name": "Standard_A2",
+         "name": "Standard_A1",
          "tier": "Standard",
          "capacity": "[parameters('instanceCount')]"
       },
@@ -76,7 +78,9 @@
               "vhdContainers": [
                 "[concat('https://', parameters('newStorageAccountPrefix'), '0.blob.core.windows.net/vmss')]",
                 "[concat('https://', parameters('newStorageAccountPrefix'), '1.blob.core.windows.net/vmss')]",
-                "[concat('https://', parameters('newStorageAccountPrefix'), '2.blob.core.windows.net/vmss')]"
+                "[concat('https://', parameters('newStorageAccountPrefix'), '2.blob.core.windows.net/vmss')]",
+                "[concat('https://', parameters('newStorageAccountPrefix'), '3.blob.core.windows.net/vmss')]",
+                "[concat('https://', parameters('newStorageAccountPrefix'), '4.blob.core.windows.net/vmss')]"
               ],
               "name": "vmssosdisk",
               "caching": "ReadOnly",
