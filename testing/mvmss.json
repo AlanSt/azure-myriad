@@ -83,7 +83,7 @@
                 "[concat('https://', parameters('newStorageAccountPrefix'), '4.blob.core.windows.net/vmss')]"
               ],
               "name": "vmssosdisk",
-              "caching": "ReadOnly",
+              "caching": "ReadWrite",
               "createOption": "FromImage"
             },
             "imageReference": {
