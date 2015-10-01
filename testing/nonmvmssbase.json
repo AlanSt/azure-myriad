@@ -81,6 +81,7 @@
         }
     },
     "variables": {
+      "availabilitySetName": "AvSet",
       "vnetID": "[resourceId('Microsoft.Network/virtualNetworks', parameters('baseVirtualNetworkName'))]",
       "subnet1Ref": "[concat(variables('vnetID'),'/subnets/', parameters('baseSubnetName'))]",
       "baseLbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('baseLbName'))]"
@@ -122,6 +123,9 @@
                 "[concat('Microsoft.Network/networkInterfaces/', 'nic', parameters('basePrefix'), padLeft(copyindex(), 2, '0'))]"
             ],
             "properties": {
+               "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets',variables('availabilitySetName'))]"
+                },
                 "hardwareProfile": {
                     "vmSize": "[parameters('baseVmSize')]"
                 },
