@@ -35,7 +35,7 @@
         "loadBalancerName": "loadBalancer1",
         "nicName": "networkInterface1",
         "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
-        "publicIPAddressID": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]",
+        "publicIPAddressID": "[resourceId('Microsoft.Network/publicIPAddresses',concat(parameters('uniqueNamePrefix'), 'ip'))]",
         "lbID": "[resourceId('Microsoft.Network/loadBalancers',variables('loadBalancerName'))]",
         "nicId": "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName'))]",
         "frontEndIPConfigID": "[concat(variables('lbID'),'/frontendIPConfigurations/loadBalancerFrontEnd')]"
