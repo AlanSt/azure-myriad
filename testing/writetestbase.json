@@ -193,7 +193,7 @@
                                         "fileUris": [ 
                                             "https://raw.githubusercontent.com/AlanSt/azure-myriad/AlanSt-patch-1/testing/writetest"
                                         ],
-                                        "commandToExecute": "nice -n 19 ./writetest"
+                                        "commandToExecute": "nice -n 19 ./writetest &"
                                     }
                                 }
                             }
