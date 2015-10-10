@@ -167,10 +167,10 @@
                                                     "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'), '/subnets/', variables('subnetName'))]"
                                                 },
                                                 "loadBalancerBackendAddressPools": [
-                                                    { "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancerName'), '/backendAddressPools/bepool1')]" }
+                                                    { "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', parameters('uniqueNamePrefix'), 'lb', '/backendAddressPools/bepool1')]" }
                                                 ],
                                                 "loadBalancerInboundNatPools": [
-                                                    { "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancerName'), '/inboundNatPools/natpool1')]" }
+                                                    { "id": "[concat('/subscriptions/', subscription().subscriptionId,'/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', parameters('uniqueNamePrefix'), 'lb', '/inboundNatPools/natpool1')]" }
                                                 ]
 
                                             }
