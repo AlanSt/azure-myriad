@@ -95,7 +95,7 @@
                         "name": "natpool1",
                         "properties": {
                             "frontendIPConfiguration": {
-                                "id": "[concat(parameters('uniqueNamePrefix'), 'lb', '/frontendIPConfigurations/loadBalancerFrontEnd')]"
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', concat(parameters('uniqueNamePrefix'), 'lb')), '/frontendIPConfigurations/loadBalancerFrontEnd')]"
                             },
                             "protocol": "tcp",
                             "frontendPortRangeStart": 50000,
