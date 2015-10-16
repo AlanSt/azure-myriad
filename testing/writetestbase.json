@@ -193,7 +193,7 @@
                                         "fileUris": [ 
                                             "https://raw.githubusercontent.com/AlanSt/azure-myriad/AlanSt-patch-1/testing/writetest"
                                         ],
-                                        "commandToExecute": "ionice -c 3 ./writetest &"
+                                        "commandToExecute": "ionice -c 2 -n 7 ./writetest &"
                                     }
                                 }
                             }
