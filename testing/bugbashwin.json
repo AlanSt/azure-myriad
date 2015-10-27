@@ -22,9 +22,9 @@
         }
     },
     "variables": {
-        "imagePublisher": "Canonical",
-        "imageOffer": "UbuntuServer",
-        "imageVersion": "15.04",
+        "imagePublisher": "MicrosoftWindowsServer",
+        "imageOffer": "WindowsServer",
+        "imageVersion": "2012-R2-Datacenter",
         "addressPrefix": "10.0.0.0/16",
         "subnetPrefix": "10.0.0.0/24",
         "storageAccountType": "Standard_LRS",
