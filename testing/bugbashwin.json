@@ -38,16 +38,19 @@
         "publicIPAddressID": "[resourceId('Microsoft.Network/publicIPAddresses',concat(parameters('uniqueNamePrefix'), 'ip'))]",
         "lbID": "[resourceId('Microsoft.Network/loadBalancers',variables('loadBalancerName'))]",
         "nicId": "[resourceId('Microsoft.Network/networkInterfaces',variables('nicName'))]",
-        "frontEndIPConfigID": "[concat(variables('lbID'),'/frontendIPConfigurations/loadBalancerFrontEnd')]"
+        "frontEndIPConfigID": "[concat(variables('lbID'),'/frontendIPConfigurations/loadBalancerFrontEnd')]",
+        "storageAccountPrefix": [ 
+	       "a","g","m","s","y" 
+       ]
     },
     "resources": [
         {
             "type": "Microsoft.Storage/storageAccounts",
-            "name": "[concat(parameters('newStorageAccountPrefix'), copyindex())]",
+            "name": "[concat(variables('storageAccountPrefix')[copyIndex()], parameters('newStorageAccountPrefix'))]",
             "apiVersion": "2015-05-01-preview",
             "copy": {
                 "name": "storageLoop",
-                "count": 3
+                "count": 5
             },
             "location": "[variables('location')]",
             "properties": {
@@ -115,9 +118,11 @@
                 "vmsstag1": "Myriad"
             },
             "dependsOn": [
-                "[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountPrefix'), '0')]",
-                "[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountPrefix'), '1')]",
-                "[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountPrefix'), '2')]",
+                "[concat('Microsoft.Storage/storageAccounts/a', parameters('newStorageAccountPrefix'))]",
+                "[concat('Microsoft.Storage/storageAccounts/g', parameters('newStorageAccountPrefix'))]",
+                "[concat('Microsoft.Storage/storageAccounts/m', parameters('newStorageAccountPrefix'))]",
+                "[concat('Microsoft.Storage/storageAccounts/s', parameters('newStorageAccountPrefix'))]",
+                "[concat('Microsoft.Storage/storageAccounts/y', parameters('newStorageAccountPrefix'))]",
                 "[concat('Microsoft.Network/loadBalancers/', parameters('uniqueNamePrefix'), 'lb')]"
             ],
             "sku": {
@@ -133,9 +138,11 @@
                     "storageProfile": {
                         "osDisk": {
                             "vhdContainers": [
-                                "[concat('https://', parameters('newStorageAccountPrefix'), '0.blob.core.windows.net/vmss')]",
-                                "[concat('https://', parameters('newStorageAccountPrefix'), '1.blob.core.windows.net/vmss')]",
-                                "[concat('https://', parameters('newStorageAccountPrefix'), '2.blob.core.windows.net/vmss')]"
+                                "[concat('https://a', parameters('newStorageAccountPrefix'), '.blob.core.windows.net/vmss')]",
+                                "[concat('https://g', parameters('newStorageAccountPrefix'), '.blob.core.windows.net/vmss')]",
+                                "[concat('https://m', parameters('newStorageAccountPrefix'), '.blob.core.windows.net/vmss')]",
+                                "[concat('https://s', parameters('newStorageAccountPrefix'), '.blob.core.windows.net/vmss')]",
+                                "[concat('https://y', parameters('newStorageAccountPrefix'), '.blob.core.windows.net/vmss')]"
                             ],
                             "name": "vmssosdisk",
                             "caching": "ReadOnly",
